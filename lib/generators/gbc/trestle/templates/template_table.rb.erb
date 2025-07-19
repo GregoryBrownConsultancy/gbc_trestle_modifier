@@ -1,0 +1,21 @@
+module <%= file_name_classified %>
+  class Table
+    def initialize(base)
+      @base = base
+    end
+    def render
+      @base.table do
+        column :TODO do |_x|
+          "Edit file <%= admin_folder_path %>%}/form.rb to adjust columns"
+        end
+        # Fill out you table normally here
+        # 
+        # column :name
+        # column :email
+        # ...
+        # column :created_at, align: :center
+        # actions
+      end
+    end
+  end
+end
