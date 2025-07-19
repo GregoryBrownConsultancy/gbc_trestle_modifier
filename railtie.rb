@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # lib/gbc_trestle_modifier/railtie.rb
 require "rails/railtie"
 

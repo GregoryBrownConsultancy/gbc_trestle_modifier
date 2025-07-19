@@ -1,3 +1,6 @@
+require:
+  - rubocop-rspec
+  
 AllCops:
   TargetRubyVersion: 3.0
 
@@ -6,3 +9,8 @@ Style/StringLiterals:
 
 Style/StringLiteralsInInterpolation:
   EnforcedStyle: double_quotes
+
+RSpec:
+  Language:
+    Include:
+      - 'spec/**/*_spec.rb'
