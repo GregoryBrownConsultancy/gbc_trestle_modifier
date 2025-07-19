@@ -1,6 +1,6 @@
 require:
   - rubocop-rspec
-  
+
 AllCops:
   TargetRubyVersion: 3.0
 
@@ -14,3 +14,8 @@ RSpec:
   Language:
     Include:
       - 'spec/**/*_spec.rb'
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/VerifiedDoubleReference:
+  Enabled: false

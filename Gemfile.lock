@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     gbc_trestle_modifier (0.1.0)
+      activesupport
       trestle
 
 GEM

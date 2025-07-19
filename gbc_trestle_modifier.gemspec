@@ -46,12 +46,9 @@ Gem::Specification.new do |spec|
 
   # Runtime dependency
   spec.add_runtime_dependency "trestle"
-
+  spec.add_dependency "activesupport"
   # development dependencies
   spec.add_development_dependency "rspec", "~> 3.12"
   spec.add_development_dependency "rubocop"
   spec.add_development_dependency "rubocop-rspec"
-
-  # For more information and examples about making a new gem, check out our
-  # guide at: https://bundler.io/guides/creating_gem.html
 end
