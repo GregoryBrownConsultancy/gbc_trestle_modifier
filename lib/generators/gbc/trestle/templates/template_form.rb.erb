@@ -1,0 +1,18 @@
+module <%= file_name_classified %>
+  class Form
+    def initialize(base)
+      @base = base
+    end
+    def render
+      @base.form do
+        col(sm: 12) { "Edit file #{admin_folder_path}/form.rb" }
+        # Fill out you form normally here
+        # 
+        # col(sm: 12) do
+        #     text_field(:name)
+        # end
+        # ...
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module <%= file_name_classified %>
+  class Routes
+    def initialize(base)
+      @base = base
+    end
+    def render
+      @base.routes do
+        # Fill out you table normally here
+        # 
+        # post :some_endpoint, on: :collection
+        # get :another_endpoint, on: :collection, params: { document: :string }
+      end
+    end
+  end
+end
