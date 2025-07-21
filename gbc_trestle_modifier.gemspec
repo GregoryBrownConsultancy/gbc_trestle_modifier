@@ -28,6 +28,7 @@ Gem::Specification.new do |spec|
   # spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
+  spec.metadata["rubygems_mfa_required"] = "true"
   # spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
   # spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
 
@@ -45,10 +46,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Runtime dependency
-  spec.add_runtime_dependency "trestle"
   spec.add_dependency "activesupport"
-  # development dependencies
-  spec.add_development_dependency "rspec", "~> 3.12"
-  spec.add_development_dependency "rubocop"
-  spec.add_development_dependency "rubocop-rspec"
+  spec.add_dependency "trestle"
 end
