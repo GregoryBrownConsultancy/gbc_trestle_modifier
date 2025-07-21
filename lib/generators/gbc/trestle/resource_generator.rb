@@ -4,6 +4,7 @@ require "rails/generators"
 
 module Gbc
   module Trestle
+    # the generator itself
     class ResourceGenerator < Rails::Generators::Base
       source_root File.expand_path("templates", __dir__)
 
@@ -43,6 +44,12 @@ module Gbc
         # `copy_file` copies a file from the source_root to the destination path.
         # No ERB processing is done here.
         template "template_routes.rb.erb", "#{admin_folder_path}/routes.rb"
+      end
+
+      def create_controller_template
+        # `copy_file` copies a file from the source_root to the destination path.
+        # No ERB processing is done here.
+        template "template_controller.rb.erb", "#{admin_folder_path}/controller.rb"
       end
 
       # 3. Process and copy the main admin template file.
