@@ -31,12 +31,12 @@ simplifies the placing of the menu.
 ### Using the generator
 
 ```bash
-rails generate gbc:trestle:resrouce my_resource [ModelName]
+rails generate gbc:trestle:resource my_resource [ModelName]
 ```
 
 You basically run this at the root of your rails project and the generator will create all the necessary files for you to start customizing them.
 
-#### my_resrouce
+#### my_resource
 This is the admin name. The convention is that you name it as the pluralized version of your model, so if you have a model called: `Category` you would name it `categories`.
 This is the name of the TrestleResource.
 
@@ -45,7 +45,7 @@ If you are going to call your resource something else, like `manage_categories` 
 
 So to illustrate:
 ```bash
-rails generate gbc:trestle:resrouce manage_categories Category
+rails generate gbc:trestle:resource manage_categories Category
 ```
 
 Will generate a functioning resource called `manage_categories` that uses `Category` as a base model.
@@ -236,7 +236,7 @@ The rest of the parameters are pretty much the same as the parameters you can pa
 
 #### The helper
 
-Now instead of declaring your menu item directly in you resrouce, you just say what yaml item this resrouce points to:
+Now instead of declaring your menu item directly in you resource, you just say what yaml item this resource points to:
 
 ```ruby
   menu do
@@ -251,7 +251,7 @@ For example, would render item `item2` of `group1`
 
 ### What does this allow?
 
-Well now that you are no longer declaring positions and groups directly  in your resrouces, most of your changes of ordering will happen in your `menu.yml` file.
+Well now that you are no longer declaring positions and groups directly  in your resources, most of your changes of ordering will happen in your `menu.yml` file.
 
 For example: if you wish to make `item2` of `group1` the first item in the list, all you have to do is change the priorities on the yaml file.
 
