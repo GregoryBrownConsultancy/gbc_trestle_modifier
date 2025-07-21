@@ -13,13 +13,13 @@ Gem::Specification.new do |spec|
     Treste is a great tool for rapid prototyping projects. I use it in loads
     of my projects. There are a couple of things that kind of tick me off though;
     Trestle resources tend to become large files in the app/admin folder due to the
-    way they are written. I find it hard to read/maintain them as a big file, so I 
-    split them up into smaller files and created a generator to ensure that they 
+    way they are written. I find it hard to read/maintain them as a big file, so I#{" "}
+    split them up into smaller files and created a generator to ensure that they#{" "}
     always follow a standard. Another pet peeve is the menu handling. Handling menu itmes
-    in each resource quickly becomes a nightmare. Ordering them requires a lot of 
+    in each resource quickly becomes a nightmare. Ordering them requires a lot of#{" "}
     manual work. To keep things simpler, inspired by the work from the crowd at WinterCMS,
     I created a menu.yml file that is used to manage the menu. I also created a helper that
-    simplifies the placing of the menu. 
+    simplifies the placing of the menu.#{" "}
   DESCRIPTION
   spec.homepage = "https://github.com/GregoryBrownConsultancy/gbc_trestle_modifier"
   spec.license = "MIT"
@@ -41,5 +41,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Runtime dependency
-  spec.add_runtime_dependency "trestle"
+  spec.add_dependency "activesupport"
+  spec.add_dependency "trestle"
 end
