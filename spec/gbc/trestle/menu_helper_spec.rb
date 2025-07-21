@@ -24,7 +24,7 @@ describe Gbc::Trestle::MenuHelper do
 
   after do
     # Clean up the temporary directory after each example
-    FileUtils.remove_entry(temp_root_dir) if File.exist?(temp_root_dir)
+    FileUtils.rm_rf(temp_root_dir)
   end
 
   # --- Context: Valid YAML Scenarios ---
