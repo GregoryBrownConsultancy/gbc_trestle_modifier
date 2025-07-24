@@ -104,6 +104,7 @@ RSpec.describe Gbc::Trestle::ResourceGenerator do
 
   describe "helper methods" do
     let(:generator) { described_class.new(%w[UserGroup User]) }
+    let(:no_model) { described_class.new(%w[OtherGroup]) }
 
     it { expect(generator.send(:file_name)).to eq("user_group") }
     it { expect(generator.send(:file_name_classified)).to eq("UserGroup") }
@@ -112,6 +113,9 @@ RSpec.describe Gbc::Trestle::ResourceGenerator do
     it { expect(generator.send(:model_name_snake_cased)).to eq("user") }
     it { expect(generator.send(:model_name_classified)).to eq("User") }
     it { expect(generator.send(:model_definition)).to eq(", model: User") }
+
+    it { expect(no_model.send(:model_name_snake_cased)).to be_nil }
+    it { expect(no_model.send(:model_name_classified)).to be_nil }
   end
 
   describe "template generation" do
