@@ -1,0 +1,15 @@
+module <%= file_name_classified %>
+  class Scopes
+    def initialize(base)
+      @base = base
+    end
+    def render
+      @base.scopes do
+        # Fill out you table normally here
+        # 
+        # scope :all, label: 'Show All', default: true
+        # scope :expired, label: 'Show expired'
+      end
+    end
+  end
+end

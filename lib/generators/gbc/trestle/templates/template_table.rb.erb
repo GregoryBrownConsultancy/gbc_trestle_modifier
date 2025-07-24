@@ -4,6 +4,11 @@ module <%= file_name_classified %>
       @base = base
     end
     def render
+      default_table
+      # named_table
+    end
+
+    def default_table
       @base.table do
         column :TODO do |_x|
           "Edit file <%= admin_folder_path %>%}/form.rb to adjust columns"
@@ -17,5 +22,22 @@ module <%= file_name_classified %>
         # actions
       end
     end
+
+    # named tabled can be used in other resources
+    # 
+    # def named_table
+    #   @base.table :named_table, collection: collection do
+    #     column :TODO do |_x|
+    #       "Edit file <%= admin_folder_path %>%}/form.rb to adjust columns"
+    #     end
+    #     # Fill out you table normally here
+    #     # 
+    #     # column :name
+    #     # column :email
+    #     # ...
+    #     # column :created_at, align: :center
+    #     # actions
+    #   end
+    # end
   end
 end

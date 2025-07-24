@@ -18,14 +18,17 @@ module Gbc
       def start
         say_status "building", "Building new Trestle resource"
       end
-      # 1. Create the dedicated folder for the Trestle admin files.
+
+      def info1
+        say_status "building", "Building supporting files"
+      end
+
       def create_admin_folder
         # `empty_directory` ensures the directory exists and is empty if it was there before.
         empty_directory admin_folder_path
         # `say_status` provides feedback to the user in the console.
       end
 
-      # 2. Copy the static Table.rb file.
       def create_table_template
         # `copy_file` copies a file from the source_root to the destination path.
         # No ERB processing is done here.
@@ -44,13 +47,34 @@ module Gbc
         template "template_routes.rb.erb", "#{admin_folder_path}/routes.rb"
       end
 
-      # 3. Process and copy the main admin template file.
+      def create_collection_template
+        # `copy_file` copies a file from the source_root to the destination path.
+        # No ERB processing is done here.
+        template "template_collection.rb.erb", "#{admin_folder_path}/collection.rb"
+      end
+
+      def create_scopes_template
+        # `copy_file` copies a file from the source_root to the destination path.
+        # No ERB processing is done here.
+        template "template_scopes.rb.erb", "#{admin_folder_path}/scopes.rb"
+      end
+
+      def create_search_template
+        # `copy_file` copies a file from the source_root to the destination path.
+        # No ERB processing is done here.
+        template "template_search.rb.erb", "#{admin_folder_path}/search.rb"
+      end
+
+      def info2
+        say_status "Finishing", "Creating the admin file to tie things up"
+      end
+
+      # Process and copy the main admin template file.
       def process_admin_template
         # `template` processes an ERB file and copies the result.
         # Variables defined in this generator class (like `file_name`, `model_name_snake_cased`)
         # are accessible within the ERB template.
         template "template_admin.rb.erb", "#{admin_root_path}/#{file_name}_admin.rb"
-        say_status "create", "Admin file: #{admin_root_path}/#{file_name}_admin.rb"
       end
 
       private
