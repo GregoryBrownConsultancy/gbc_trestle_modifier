@@ -1,3 +1,5 @@
+require:
+  - rubocop-rspec
 AllCops:
   TargetRubyVersion: 3.0
   SuggestExtensions: false
@@ -14,3 +16,10 @@ Style/Documentation:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+RSpec/VerifiedDoubles:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 35
+  

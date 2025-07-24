@@ -11,4 +11,5 @@ group :development, :test do
   gem "bundler-audit", require: false
   gem "rspec"
   gem "rubocop", "~> 1.21", require: false
+  gem "rubocop-rspec", require: false
 end
