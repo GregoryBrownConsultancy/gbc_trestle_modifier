@@ -7,8 +7,8 @@ gemspec
 
 gem "rake", "~> 13.0"
 group :development, :test do
-  gem 'rspec'
+  gem "brakeman", require: false
+  gem "bundler-audit", require: false
+  gem "rspec"
   gem "rubocop", "~> 1.21", require: false
-  gem 'bundler-audit', require: false
-  gem 'brakeman', require: false
 end
