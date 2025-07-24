@@ -26,7 +26,7 @@ module Gbc
       private
 
       def load_config
-        YAML.load_file(Rails.root.join("app", "admin", "menu.yml"))
+        YAML.load_file(File.expand_path("app/admin/menu.yml", __dir__))
       end
 
       def item_priority(group_obj, item_obj)
