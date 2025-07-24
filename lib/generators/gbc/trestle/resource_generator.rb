@@ -11,7 +11,7 @@ module Gbc
                       desc: "The name for the Trestle admin resource (e.g., Product, UserGroup)."
 
       argument :model, type: :string, required: false,
-                      desc: "The associated model name (optional, e.g., Product, Item)."
+                       desc: "The associated model name (optional, e.g., Product, Item)."
 
       # Description displayed when running `rails generate custom:trestle --help`.
       desc "Generates a Trestle admin folder and files for a given resource."
@@ -115,7 +115,7 @@ module Gbc
       end
 
       def model_definition
-        model.present? ?  ", model: #{model_name_classified}" : ""
+        model.present? ? ", model: #{model_name_classified}" : ""
       end
     end
   end
