@@ -22,4 +22,6 @@ RSpec/VerifiedDoubles:
 
 RSpec/ExampleLength:
   Max: 35
-  
+
+RSpec/MultipleExpectations:
+  Enabled: false

@@ -9,6 +9,7 @@ gem "rake", "~> 13.0"
 group :development, :test do
   gem "brakeman", require: false
   gem "bundler-audit", require: false
+  gem "generator_spec"
   gem "rspec"
   gem "rubocop", "~> 1.21", require: false
   gem "rubocop-rspec", require: false
