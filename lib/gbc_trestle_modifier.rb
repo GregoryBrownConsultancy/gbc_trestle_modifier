@@ -2,7 +2,9 @@
 
 require_relative "gbc_trestle_modifier/version"
 require "gbc/trestle/menu_helper"
+require "rails/railtie"
 
+# :nocov:
 module GbcTrestleResourceGenerator
   class Railtie < Rails::Railtie
     generators do
@@ -10,3 +12,4 @@ module GbcTrestleResourceGenerator
     end
   end
 end
+# :nocov:

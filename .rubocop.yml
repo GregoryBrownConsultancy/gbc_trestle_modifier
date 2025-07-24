@@ -1,8 +1,27 @@
+require:
+  - rubocop-rspec
 AllCops:
   TargetRubyVersion: 3.0
+  SuggestExtensions: false
+  NewCops: disable
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
 Style/StringLiteralsInInterpolation:
   EnforcedStyle: double_quotes
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+RSpec/VerifiedDoubles:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 35
+
+RSpec/MultipleExpectations:
+  Enabled: false

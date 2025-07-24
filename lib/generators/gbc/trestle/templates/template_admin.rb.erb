@@ -20,7 +20,7 @@ Trestle.resource(:<%= file_name%><%= model_definition %>) do
   #
   # DO NOT CHANGE THINGS FROM HERE ON 
   resource_dir = File.expand_path("<%= file_name %>", __dir__)
-  components = %w[table form controller routes] # Add 'scopes', 'show', 'fields' as needed
+  components = %w[table form controller collection scopes search routes]
 
   components.each do |component|
     file_path = File.join(resource_dir, "#{component}.rb")

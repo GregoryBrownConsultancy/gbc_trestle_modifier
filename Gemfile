@@ -6,5 +6,13 @@ source "https://rubygems.org"
 gemspec
 
 gem "rake", "~> 13.0"
-
-gem "rubocop", "~> 1.21"
+group :development, :test do
+  gem "brakeman", require: false
+  gem "bundler-audit", require: false
+  gem "generator_spec"
+  gem "rspec"
+  gem "rubocop", "~> 1.21", require: false
+  gem "rubocop-rspec", require: false
+  gem "simplecov", require: false
+  gem "simplecov-lcov"
+end

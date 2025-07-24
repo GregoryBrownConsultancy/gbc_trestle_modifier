@@ -1,0 +1,90 @@
+name: "Ruby Gem CI"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      COVERAGE: "true"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.3'
+          bundler-cache: true
+
+      - name: Run RSpec with coverage
+        run: bundle exec rspec
+
+      - name: Check coverage thresholds
+        run: |
+          if [ ! -f coverage/.last_run.json ]; then
+            echo "Error: Coverage report not generated"
+            exit 1
+          fi
+
+          LINE_COVERAGE=$(jq '.result.line' coverage/.last_run.json)
+          BRANCH_COVERAGE=$(jq '.result.branch' coverage/.last_run.json)
+
+          echo "Line coverage:   $LINE_COVERAGE%"
+          echo "Branch coverage: $BRANCH_COVERAGE%"
+
+          MIN_LINE_COVERAGE=90
+          MIN_BRANCH_COVERAGE=80
+
+          FAILED=0
+
+          if (( $(echo "$LINE_COVERAGE < $MIN_LINE_COVERAGE" | bc -l) )); then
+            echo "❌ Line coverage ($LINE_COVERAGE%) is below $MIN_LINE_COVERAGE%"
+            FAILED=1
+          else
+            echo "✅ Line coverage passed"
+          fi
+
+          if (( $(echo "$BRANCH_COVERAGE < $MIN_BRANCH_COVERAGE" | bc -l) )); then
+            echo "❌ Branch coverage ($BRANCH_COVERAGE%) is below $MIN_BRANCH_COVERAGE%"
+            FAILED=1
+          else
+            echo "✅ Branch coverage passed"
+          fi
+
+          exit $FAILED
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage
+          retention-days: 7
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Lint with RuboCop
+        run: bundle exec rubocop --parallel
+
+      - name: Security audit dependencies
+        run: |
+          bundle binstubs bundler-audit brakeman || true
+          bin/bundler-audit --update || true
+
+      - name: Static analysis (optional)
+        run: bin/brakeman -q -w2 || true
