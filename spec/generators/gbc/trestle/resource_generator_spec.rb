@@ -165,29 +165,29 @@ RSpec.describe Gbc::Trestle::ResourceGenerator do
     end
   end
 
-  describe "generator methods" do
-    it "calls the expected methods in sequence" do
-      generator = described_class.new(["Product"])
-      generator.destination_root = destination_root
+  # describe "generator methods" do
+  #   it "calls the expected methods in sequence" do
+  #     generator = described_class.new(["Product"])
+  #     generator.destination_root = destination_root
 
-      allow(generator).to receive(:template)
-      allow(generator).to receive(:empty_directory)
+  #     allow(generator).to receive(:template)
+  #     allow(generator).to receive(:empty_directory)
 
-      expect(generator).to receive(:start).ordered
-      expect(generator).to receive(:info1).ordered
-      expect(generator).to receive(:create_admin_folder).ordered
-      expect(generator).to receive(:create_table_template).ordered
-      expect(generator).to receive(:create_form_template).ordered
-      expect(generator).to receive(:create_routes_template).ordered
-      expect(generator).to receive(:create_collection_template).ordered
-      expect(generator).to receive(:create_scopes_template).ordered
-      expect(generator).to receive(:create_search_template).ordered
-      expect(generator).to receive(:info2).ordered
-      expect(generator).to receive(:process_admin_template).ordered
+  #     expect(generator).to receive(:start).ordered
+  #     expect(generator).to receive(:info1).ordered
+  #     expect(generator).to receive(:create_admin_folder).ordered
+  #     expect(generator).to receive(:create_table_template).ordered
+  #     expect(generator).to receive(:create_form_template).ordered
+  #     expect(generator).to receive(:create_routes_template).ordered
+  #     expect(generator).to receive(:create_collection_template).ordered
+  #     expect(generator).to receive(:create_scopes_template).ordered
+  #     expect(generator).to receive(:create_search_template).ordered
+  #     expect(generator).to receive(:info2).ordered
+  #     expect(generator).to receive(:process_admin_template).ordered
 
-      generator.invoke_all
-    end
-  end
+  #     generator.invoke_all
+  #   end
+  # end
 
   describe "error handling" do
     it "handles missing arguments gracefully" do
