@@ -31,6 +31,40 @@ jobs:
             echo "Error: Coverage report not generated"
             exit 1
           fi
+
+          LINE_COVERAGE=$(jq '.result.line' coverage/.last_run.json)
+          BRANCH_COVERAGE=$(jq '.result.branch' coverage/.last_run.json)
+
+          echo "Line coverage:   $LINE_COVERAGE%"
+          echo "Branch coverage: $BRANCH_COVERAGE%"
+
+          MIN_LINE_COVERAGE=90
+          MIN_BRANCH_COVERAGE=80
+
+          FAILED=0
+
+          if (( $(echo "$LINE_COVERAGE < $MIN_LINE_COVERAGE" | bc -l) )); then
+            echo "❌ Line coverage ($LINE_COVERAGE%) is below $MIN_LINE_COVERAGE%"
+            FAILED=1
+          else
+            echo "✅ Line coverage passed"
+          fi
+
+          if (( $(echo "$BRANCH_COVERAGE < $MIN_BRANCH_COVERAGE" | bc -l) )); then
+            echo "❌ Branch coverage ($BRANCH_COVERAGE%) is below $MIN_BRANCH_COVERAGE%"
+            FAILED=1
+          else
+            echo "✅ Branch coverage passed"
+          fi
+
+          exit $FAILED
+        
+      - name: Check coverage thresholds
+        run: |
+          if [ ! -f coverage/.last_run.json ]; then
+            echo "Error: Coverage report not generated"
+            exit 1
+          fi
           
           # Extract coverage percentage from the last run report
           COVERAGE_PCT=$(grep -o '"covered_percent":[0-9.]*' coverage/.last_run.json | grep -o '[0-9.]*')
