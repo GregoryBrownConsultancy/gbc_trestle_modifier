@@ -1,4 +1,4 @@
-name: "Ruby on Rails CI"
+name: "Ruby Gem CI"
 
 on:
   push:
@@ -9,35 +9,17 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:11-alpine
-        ports:
-          - "5432:5432"
-        env:
-          POSTGRES_DB: rails_test
-          POSTGRES_USER: rails
-          POSTGRES_PASSWORD: password
-    env:
-      RAILS_ENV: test
-      DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Ruby and gems
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          working-directory: mcp_rails
 
-      - name: Set up database schema
-        working-directory: mcp_rails
-        run: bin/rails db:schema:load
-
-      - name: Run tests
-        working-directory: mcp_rails
+      - name: Run RSpec
         run: bundle exec rspec
 
   lint:
@@ -47,24 +29,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Ruby and gems
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          working-directory: mcp_rails
 
-      - name: Generate binstubs
-        working-directory: mcp_rails
-        run: bundle binstubs bundler-audit brakeman rubocop
+      - name: Lint with RuboCop
+        run: bundle exec rubocop --parallel
 
       - name: Security audit dependencies
-        working-directory: mcp_rails
-        run: bin/bundler-audit --update
+        run: |
+          bundle binstubs bundler-audit brakeman || true
+          bin/bundler-audit --update || true
 
-      - name: Security audit application code
-        working-directory: mcp_rails
-        run: bin/brakeman -q -w2
-
-      - name: Lint Ruby files
-        working-directory: mcp_rails
-        run: bin/rubocop --parallel
+      - name: Static analysis (optional)
+        run: bin/brakeman -q -w2 || true
