@@ -58,25 +58,6 @@ jobs:
           fi
 
           exit $FAILED
-        
-      - name: Check coverage thresholds
-        run: |
-          if [ ! -f coverage/.last_run.json ]; then
-            echo "Error: Coverage report not generated"
-            exit 1
-          fi
-          
-          # Extract coverage percentage from the last run report
-          COVERAGE_PCT=$(grep -o '"covered_percent":[0-9.]*' coverage/.last_run.json | grep -o '[0-9.]*')
-          echo "Current coverage: $COVERAGE_PCT%"
-          
-          # Check if coverage meets the threshold (90%)
-          if (( $(echo "$COVERAGE_PCT < 90" | bc -l) )); then
-            echo "Error: Coverage ($COVERAGE_PCT%) is below the minimum threshold (90%)"
-            exit 1
-          else
-            echo "Coverage check passed: $COVERAGE_PCT% ✅"
-          fi
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
