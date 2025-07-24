@@ -2,6 +2,7 @@
 
 require_relative "gbc_trestle_modifier/version"
 require "gbc/trestle/menu_helper"
+require "rails/railtie"
 
 module GbcTrestleResourceGenerator
   class Railtie < Rails::Railtie
