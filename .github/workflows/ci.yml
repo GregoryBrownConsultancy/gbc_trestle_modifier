@@ -59,6 +59,15 @@ jobs:
 
           exit $FAILED
 
+      - name: Generate SimpleCov Badge
+        uses: simplecov-ruby/simplecov-badge-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # The path to your SimpleCov JSON report.
+          # Default is coverage/.last_run.json, which matches your current setup.
+          # If your report is elsewhere, specify it here.
+          # simplecov_json_path: 'coverage/.last_run.json'
+
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
