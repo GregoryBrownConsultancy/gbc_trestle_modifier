@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "rails/generators"
-
+require_relative "model_inspector"
 module Gbc
   module Trestle
     class ResourceGenerator < Rails::Generators::Base
@@ -32,6 +32,15 @@ module Gbc
       def create_table_template
         # `copy_file` copies a file from the source_root to the destination path.
         # No ERB processing is done here.
+        if model.present?
+          puts "Info: Attempting to fetch attributes for model: #{model}"
+          model_class = Gbc::ModelInspector.find_active_record_model(model)
+          puts "Info: Found model class: #{model_class}"
+          if model_class
+            puts "Info: Attempting to fetch attributes for model: #{model}"
+            @model_database_attributes = Gbc::ModelInspector.get_model_database_attributes(model_class)
+          end
+        end
         template "template_table.rb.erb", "#{admin_folder_path}/table.rb"
       end
 
@@ -63,6 +72,12 @@ module Gbc
         # `copy_file` copies a file from the source_root to the destination path.
         # No ERB processing is done here.
         template "template_search.rb.erb", "#{admin_folder_path}/search.rb"
+      end
+
+      def create_controller_template
+        # `copy_file` copies a file from the source_root to the destination path.
+        # No ERB processing is done here.
+        template "template_controller.rb.erb", "#{admin_folder_path}/controller.rb"
       end
 
       def info2

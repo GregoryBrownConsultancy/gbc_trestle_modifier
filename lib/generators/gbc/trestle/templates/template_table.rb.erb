@@ -13,6 +13,12 @@ module <%= file_name_classified %>
         column :TODO do |_x|
           "Edit file <%= admin_folder_path %>%}/form.rb to adjust columns"
         end
+<% if @model_attributes.present? %>
+        # DYNAMICALLY CREATED!
+          <% @model_attributes.each do |name, type| %>
+            column <%= name%>
+          <% end %>
+<% end %>
         # Fill out you table normally here
         # 
         # column :name
