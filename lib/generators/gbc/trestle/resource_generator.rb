@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "rails/generators"
-require_relative "model_inspector"
+require_relative "./model_inspector"
 module Gbc
   module Trestle
     class ResourceGenerator < Rails::Generators::Base
